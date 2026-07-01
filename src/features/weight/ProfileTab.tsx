@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { User, ShieldAlert, Bell, Database, RotateCcw, Save, ShieldCheck } from 'lucide-react';
 import { useApp } from '../../app/AppContext';
-import { resetToDefaults, loadDemoData } from '../../services/firestore/db';
+import { resetToDefaults } from '../../services/firestore/db';
 import { requestNotificationPermission } from '../../services/notifications/localNotifications';
 
 export const ProfileTab: React.FC = () => {
@@ -307,31 +307,17 @@ export const ProfileTab: React.FC = () => {
           <Database size={14} /> Developer Tools
         </h3>
 
-        <div className="grid grid-cols-2 gap-2">
-          <button
-            onClick={() => {
-              if (confirm('This will wipe all local weight history and make the app completely clean. Proceed?')) {
-                resetToDefaults();
-              }
-            }}
-            className="bg-danger-brand/10 hover:bg-danger-brand/20 border border-danger-brand/35 text-danger-brand py-3 rounded-xl font-bold text-[10px] transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 font-display"
-          >
-            <RotateCcw size={12} />
-            Wipe All Data
-          </button>
-          
-          <button
-            onClick={() => {
-              if (confirm('This will load historical demo logs to preview charts and stats. Proceed?')) {
-                loadDemoData();
-              }
-            }}
-            className="bg-primary-brand/10 hover:bg-primary-brand/20 border border-primary-brand/30 text-primary-brand py-3 rounded-xl font-bold text-[10px] transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 font-display"
-          >
-            ⚖️
-            Load Demo Data
-          </button>
-        </div>
+        <button
+          onClick={() => {
+            if (confirm('This will wipe all local weight history and make the app completely clean. Proceed?')) {
+              resetToDefaults();
+            }
+          }}
+          className="w-full bg-danger-brand/10 hover:bg-danger-brand/20 border border-danger-brand/35 text-danger-brand py-3.5 rounded-xl font-bold text-xs transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 font-display"
+        >
+          <RotateCcw size={14} />
+          Wipe All Data
+        </button>
       </div>
     </motion.div>
   );
